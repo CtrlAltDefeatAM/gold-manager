@@ -1,0 +1,1 @@
+{"_id":"GMGoldToggle0001","name":"GOLD MANAGER D&D 5e ┇ CtrlAltDefeat","type":"script","img":"icons/commodities/currency/coins-plain-gold.webp","command":"await game.modules.get(\"gold-manager\")?.api?.open?.();","folder":null,"sort":0,"ownership":{"default":3},"flags":{}}

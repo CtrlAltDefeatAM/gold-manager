@@ -1,0 +1,33 @@
+{
+  "id": "gold-manager",
+  "title": "GOLD MANAGER D&D 5e ┇ CtrlAltDefeat",
+  "description": "Universal Gold Manager UI and ledger for dnd5e.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "13"
+  },
+  "authors": [
+    {
+      "name": "CtrlAltDefeat"
+    }
+  ],
+  "url": "https://www.patreon.com/Ctrl_Alt_Defeat",
+  "manifest": "https://github.com/CtrlAltDefeatAM/gold-manager/releases/latest/download/module.json",
+  "download": "https://github.com/CtrlAltDefeatAM/gold-manager/releases/latest/download/gold-manager.zip",
+  "esmodules": [
+    "scripts/module.js"
+  ],
+  "packs": [
+    {
+      "name": "gold-manager-macros",
+      "label": "GOLD MANAGER D&D 5e ┇ CtrlAltDefeat",
+      "path": "packs/gold-manager-macros.db",
+      "type": "Macro",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ]
+}
