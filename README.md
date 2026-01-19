@@ -28,7 +28,7 @@ Need to break a Platinum coin? The Exchange tab lets you convert currency types 
 Don't do math in your head. Click the calculator icon to split loot or calculate costs without leaving the window.
 
 ### 5. The Ledger (GM Only)
-Every transaction is logged. If a player adds 500gp, you will know exactly when and why. It even detects manual edits on the character sheet!
+Every transaction is logged. If a player adds 500gp, you will know exactly when and why.
 
 ---
 
