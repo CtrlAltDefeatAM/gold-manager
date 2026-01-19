@@ -17,23 +17,18 @@ Universal Gold Manager is a high-performance, neon-styled interface designed to 
 
 ### 1. The Main Interface (Player View)
 A clean, dark-mode UI that allows players to Add, Remove, or Set their gold.
-![Player UI](images/PlayerUI.png)
 
 ### 2. Peer-to-Peer Transfers
 Players can send gold directly to other party members. The system handles the math and security checks automatically.
-![Transfer System](images/TRANSFER.png)
 
 ### 3. Currency Exchange
 Need to break a Platinum coin? The Exchange tab lets you convert currency types (e.g., 10 GP -> 1 PP or 1 GP -> 10 SP) instantly.
-![Exchange System](images/EXCHANGE.png)
 
 ### 4. Built-in Calculator
 Don't do math in your head. Click the calculator icon to split loot or calculate costs without leaving the window.
-![Calculator](images/CALCULATOR.png)
 
 ### 5. The Ledger (GM Only)
 Every transaction is logged. If a player adds 500gp, you will know exactly when and why. It even detects manual edits on the character sheet!
-![Ledger](images/LEDGER.png)
 
 ---
 
