@@ -41,10 +41,13 @@ Every transaction is logged. If a player adds 500gp, you will know exactly when 
 
 ---
 
-## 🛡️ License & Credits
-**Usage Rights:** Provided free of charge for personal and community use.
-* **Author:** CtrlAltDefeat
-* **Patreon:** [CtrlAltDefeat](https://www.patreon.com/Ctrl_Alt_Defeat)
-* **Discord:** [Join the Server](https://discord.gg/fBf7xw2bmB)
+## Main Links
+- **Main Hub:** https://ctrlaltdefeat.carrd.co/
+- **Patreon:** https://www.patreon.com/Ctrl_Alt_Defeat
+- **StartPlaying:** https://startplaying.games/gm/ctrl-alt-defeat
+- **YouTube:** https://www.youtube.com/@Ctrl_Alt_Defeat-GM
+- **Homebrewery:** https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S
+- **GitHub:** https://github.com/CtrlAltDefeatAM
+- **Discord:** https://discord.gg/fB7xw2bmB
 
 *This content is unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC.*
