@@ -1,8 +1,8 @@
 # 💰 GOLD MANAGER D&D 5e ┇ CtrlAltDefeat
 **Universal Gold Manager UI and ledger for dnd5e.**
-*Version: v1.0.0 | System: dnd5e | Author: CtrlAltDefeat*
+*Version: v1.0.6 | System: dnd5e | Author: CtrlAltDefeat*
 
-![Splash](assets/splash.gif)
+The compendium macro uses Foundry's built-in coin symbol (`icons/svg/coins.svg`). This module does not ship custom artwork.
 
 ## 📜 Project Overview
 Universal Gold Manager is a high-performance, neon-styled interface designed to streamline currency management. It replaces the tedious process of opening character sheets with a unified, "God-Tier" HUD.

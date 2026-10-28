@@ -1,5 +1,7 @@
 💰 Universal Gold Manager (Macro)
-Version: v1 (Golden Master / Standalone) Platform: Foundry VTT (v11 / v12 / v13 Verified) System: dnd5e Author: CtrlAltDefeat
+Version: v1.0.6 Platform: Foundry VTT (v12 / v13 Verified) System: dnd5e Author: CtrlAltDefeat
+
+The compendium macro uses Foundry's built-in coin symbol (`icons/svg/coins.svg`). This module does not ship custom artwork.
 
 📜 Project Overview
 Universal Gold Manager is a high-performance, neon-styled interface designed to streamline currency management in D&D 5e. It replaces the tedious process of opening individual character sheets to edit gold with a unified, "God-Tier" HUD.
@@ -66,7 +68,7 @@ Settings: Click the ⚙️ Cog Icon in the top right to access:
 
 GM Only Mode: Restrict the macro so players cannot open it.
 
-Treasurer Mode: Allow players to see/edit all characters (useful if one player manages the party funds).
+Treasurer Mode: Players can see every player character. They still only edit characters they own. A transfer to a character they do not own is delivered by the active GM after their own coins are taken.
 
 Sound File: Customize the sound effect played during transactions.
 
@@ -83,7 +85,7 @@ Select the recipient from the popup list.
 
 Click Send.
 
-Note: Players can only transfer FROM characters they own.
+Note: Players can only transfer FROM characters they own. If they do not own the recipient, a GM must be online so the coins can be delivered.
 
 ⚙️ Technical Details
 Undo System
@@ -116,6 +118,6 @@ Q: Players cannot see the "All" option.
 
 A: This is intended behavior. Players are restricted to "Single" or "Selected" (own tokens only) unless the GM enables "Treasurer Mode" in the Settings menu.
 
-Q: Ledger isn't updating for players.
+Q: Can players open the ledger?
 
-A: The macro attempts to set ownership permissions on the Gold Manager Ledger journal automatically. If it fails, manually configure that Journal Entry to give players "Owner" or "Observer" permissions. The macro's "Fault Tolerant" logic will simply skip the log and proceed with the gold transaction if it cannot write to the journal.
+A: No. The Gold Manager Ledger journal is GM-only. Players still get chat receipts, and their transactions are written into the ledger by the GM client.
