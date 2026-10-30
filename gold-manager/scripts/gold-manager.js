@@ -163,9 +163,9 @@ async function appendUserUndo(user, entry) {
 }
 
 function postTransferReceipt(source, dest, amount, type, note, whisperTo) {
-    const listHtml = `<table style="width:100%; font-size:11px; border-collapse:collapse; color:#e5e7eb !important;"><tr><td style="padding:3px; color:#f3f4f6 !important;">${escapeHtml(source.name)}</td><td style="text-align:right; font-weight:bold; color:#f87171 !important;">-${amount} ${type.toUpperCase()}</td></tr><tr><td style="padding:3px; color:#f3f4f6 !important;">${escapeHtml(dest.name)}</td><td style="text-align:right; font-weight:bold; color:#4ade80 !important;">+${amount} ${type.toUpperCase()}</td></tr></table>`;
+    const listHtml = `<table style="width:100%; font-size:11px; border-collapse:collapse; color:#000000 !important; background:#ffffff !important;"><tr><td style="padding:3px; color:#000000 !important; background:#ffffff !important;">${escapeHtml(source.name)}</td><td style="text-align:right; font-weight:bold; color:#000000 !important; background:#ffffff !important;">-${amount} ${type.toUpperCase()}</td></tr><tr><td style="padding:3px; color:#000000 !important; background:#ffffff !important;">${escapeHtml(dest.name)}</td><td style="text-align:right; font-weight:bold; color:#000000 !important; background:#ffffff !important;">+${amount} ${type.toUpperCase()}</td></tr></table>`;
     const message = {
-        content: makeCard("Transfer", `<div style="text-align:center; margin-bottom:5px; color:#f3f4f6 !important;">${escapeHtml(note || "Transfer")}</div>${listHtml}`, true),
+        content: makeCard("Transfer", `<div style="text-align:center; margin-bottom:5px; color:#000000 !important; background:#ffffff !important;">${escapeHtml(note || "Transfer")}</div>${listHtml}`, true),
         speaker: { alias: "Gold Manager" }
     };
     if (whisperTo) message.whisper = [whisperTo];
@@ -400,11 +400,11 @@ async function showLedger() {
 }
 
 function makeCard(title, messageHtml, highlight = false) {
-    const borderColor = highlight ? "#10b981" : "#3b82f6";
+    const borderColor = highlight ? "#047857" : "#1d4ed8";
     return `
-    <div style="all: initial; display: block; width: 100%; background: #111827 !important; background-color: #111827 !important; border: 1px solid ${borderColor}; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.5); color: #f3f4f6 !important; font-family: 'Signika', sans-serif; font-size: 12px; overflow: hidden; text-shadow: none !important;">
-      <div style="background: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 6px; font-weight: bold; text-align: center; text-transform: uppercase; letter-spacing: 1px; color: #f3f4f6 !important;">${escapeHtml(title)}</div>
-      <div style="padding: 8px; color: #e5e7eb !important;">${messageHtml}</div>
+    <div class="gm-chat-card" style="all: initial; display: block; box-sizing: border-box; width: 100%; background: #ffffff !important; background-color: #ffffff !important; border: 1px solid ${borderColor}; border-radius: 8px; color: #000000 !important; font-family: 'Signika', sans-serif; font-size: 12px; overflow: hidden; text-shadow: none !important;">
+      <div style="background: #ffffff !important; background-color: #ffffff !important; border-bottom: 1px solid #d1d5db; padding: 6px; font-weight: bold; text-align: center; text-transform: uppercase; letter-spacing: 1px; color: #000000 !important;">${escapeHtml(title)}</div>
+      <div style="background: #ffffff !important; background-color: #ffffff !important; padding: 8px; color: #000000 !important;">${messageHtml}</div>
     </div>`;
 }
 
@@ -471,6 +471,12 @@ function injectStyles() {
         .gm-settings-form label { flex: 1; font-weight: bold; color: #000 !important; }
         .gm-settings-form .notes { font-size: 11px; color: #444 !important; margin: -4px 0 10px 0; font-style: italic; display: block; }
         .gm-settings-form input[type="text"] { width: 100%; background: #fff; color: #000; border: 1px solid #999; padding: 4px; border-radius: 4px; }
+        #chat-log .message-content .gm-chat-card,
+        #chat-log .message-content .gm-chat-card * {
+            color: #000000 !important;
+            background-color: #ffffff !important;
+            text-shadow: none !important;
+        }
     `;
     document.head.appendChild(style);
 }
@@ -552,7 +558,7 @@ function registerOverseer() {
         if (debounceTimer) clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
             const batch = updateQueue.splice(0);
-            let msgHtml = `<div style="text-align:center; font-size:11px;">`;
+            let msgHtml = `<div style="text-align:center; font-size:11px; color:#000000 !important; background:#ffffff !important;">`;
             for (const entry of batch) {
                 msgHtml += `<div><b>${escapeHtml(entry.name)}:</b> ${escapeHtml(entry.change)}</div>`;
                 logTransaction(entry.name, "Manual Edit", entry.change, "Sheet Edit", entry.userName);
@@ -636,6 +642,7 @@ export function initGoldManager() {
 }
 
 export async function readyGoldManager() {
+    injectStyles();
     bindApi();
     registerHotkey();
     registerOverseer();
@@ -988,7 +995,7 @@ export async function openGoldManager() {
                         wallet[targetType] += valueToAdd;
                         await pushUndo([walletSnapshot(actor)]);
                         await writeCurrency(actor, wallet);
-                        const receipt = `<div style="text-align:center; color:#e5e7eb !important;">${escapeHtml(actor.name)}: <span style="color:#f87171;">-${amount} ${type.toUpperCase()}</span> ➞ <span style="color:#4ade80;">+${valueToAdd} ${targetType.toUpperCase()}</span></div>`;
+                        const receipt = `<div style="text-align:center; color:#000000 !important; background:#ffffff !important;">${escapeHtml(actor.name)}: <span style="color:#000000 !important;">-${amount} ${type.toUpperCase()}</span> ➞ <span style="color:#000000 !important;">+${valueToAdd} ${targetType.toUpperCase()}</span></div>`;
                         const message = {
                             content: makeCard("Currency Exchange", receipt, true),
                             speaker: { alias: "Gold Manager" }
@@ -1082,16 +1089,15 @@ export async function openGoldManager() {
                     await pushUndo(work.map(({ actor }) => walletSnapshot(actor)));
 
                     const sign = operation === "add" ? "+" : (operation === "remove" ? "-" : "=");
-                    const color = operation === "add" ? "#4ade80" : (operation === "remove" ? "#f87171" : "#60a5fa");
-                    let listHtml = `<table style="width:100%; font-size:11px; border-collapse:collapse; color:#e5e7eb !important;">`;
-                    work.forEach(({ actor, share }, index) => {
-                        const rowColor = index % 2 === 0 ? "rgba(255,255,255,0.05)" : "transparent";
-                        listHtml += `<tr style="background:${rowColor};"><td style="padding:3px; color:#f3f4f6 !important;">${escapeHtml(actor.name)}</td><td style="text-align:right; font-weight:bold; color:#f3f4f6 !important;">${sign}${share} ${type.toUpperCase()}</td></tr>`;
+                    const color = "#000000";
+                    let listHtml = `<table style="width:100%; font-size:11px; border-collapse:collapse; color:#000000 !important; background:#ffffff !important;">`;
+                    work.forEach(({ actor, share }) => {
+                        listHtml += `<tr style="background:#ffffff !important;"><td style="padding:3px; color:#000000 !important; background:#ffffff !important;">${escapeHtml(actor.name)}</td><td style="text-align:right; font-weight:bold; color:#000000 !important; background:#ffffff !important;">${sign}${share} ${type.toUpperCase()}</td></tr>`;
                     });
                     listHtml += `</table>`;
                     const headline = isSplit ? `${sign}${amount} ${type.toUpperCase()} (Split)` : `${sign}${amount} ${type.toUpperCase()}`;
                     ChatMessage.create({
-                        content: makeCard(`Currency ${operation.toUpperCase()}`, `<div style="text-align:center; margin-bottom:5px;"><div style="font-size:16px; font-weight:bold; color:${color} !important;">${headline}</div><div style="font-style:italic; font-size:11px; color:#9ca3af !important;">"${escapeHtml(note)}"</div></div>${listHtml}`, true),
+                        content: makeCard(`Currency ${operation.toUpperCase()}`, `<div style="text-align:center; margin-bottom:5px; background:#ffffff !important;"><div style="font-size:16px; font-weight:bold; color:${color} !important; background:#ffffff !important;">${headline}</div><div style="font-style:italic; font-size:11px; color:#000000 !important; background:#ffffff !important;">"${escapeHtml(note)}"</div></div>${listHtml}`, true),
                         speaker: { alias: "Gold Manager" }
                     });
                     if (operation === "add") {

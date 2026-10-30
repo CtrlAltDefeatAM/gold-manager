@@ -1,5 +1,5 @@
 💰 Universal Gold Manager (Macro)
-Version: v1.0.6 Platform: Foundry VTT (v12 / v13 Verified) System: dnd5e Author: CtrlAltDefeat
+Version: v1.0.7 Platform: Foundry VTT (v12 / v13 Verified) System: dnd5e Author: CtrlAltDefeat
 
 The compendium macro uses Foundry's built-in coin symbol (`icons/svg/coins.svg`). This module does not ship custom artwork.
 
