@@ -1,8 +1,10 @@
 # 💰 GOLD MANAGER D&D 5e ┇ CtrlAltDefeat
 **Universal Gold Manager UI and ledger for dnd5e.**
-*Version: v1.0.6 | System: dnd5e | Author: CtrlAltDefeat*
+*Version: v1.0.8 | System: dnd5e | Author: CtrlAltDefeat*
 
 The compendium macro uses Foundry's built-in coin symbol (`icons/svg/coins.svg`). This module does not ship custom artwork.
+
+Requires Foundry VTT v14.
 
 ## 📜 Project Overview
 Universal Gold Manager is a high-performance, neon-styled interface designed to streamline currency management. It replaces the tedious process of opening character sheets with a unified, "God-Tier" HUD.
@@ -48,6 +50,6 @@ Every transaction is logged. If a player adds 500gp, you will know exactly when 
 - **StartPlaying:** https://startplaying.games/gm/ctrl-alt-defeat
 - **YouTube:** https://www.youtube.com/@Ctrl_Alt_Defeat-GM
 - **Homebrewery:** https://homebrewery.naturalcrit.com/share/LtF88dEE8z1S
-- **GitHub:** https://ctrlaltdefeat.carrd.co/
+- **GitHub:** https://github.com/CtrlAltDefeatAM/gold-manager
 
 *This content is unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC.*

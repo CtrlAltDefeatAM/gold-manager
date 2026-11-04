@@ -1,0 +1,75 @@
+name: Publish release assets
+
+# Fires when a GitHub Release is published (including a draft that is published).
+# The tag name must match module.json "version" (for example 1.0.8, with no "v" prefix),
+# and module.json "download" must point at that tag's module.zip.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the release tag
+        uses: actions/checkout@v4
+        with:
+          # release events otherwise check out the default branch tip, not the tag.
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check manifest matches the release tag
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          version=$(node -p 'JSON.parse(require("fs").readFileSync("gold-manager/module.json","utf8")).version')
+          download=$(node -p 'JSON.parse(require("fs").readFileSync("gold-manager/module.json","utf8")).download')
+          expected="https://github.com/${GITHUB_REPOSITORY}/releases/download/${RELEASE_TAG}/module.zip"
+          if [ "$version" != "$RELEASE_TAG" ]; then
+            echo "module.json version ($version) does not match release tag ($RELEASE_TAG)"
+            exit 1
+          fi
+          if [ "$download" != "$expected" ]; then
+            echo "module.json download ($download) does not match $expected"
+            exit 1
+          fi
+          echo "Manifest $version matches $RELEASE_TAG"
+
+      - name: Install Foundry VTT CLI
+        run: npm install -g @foundryvtt/foundryvtt-cli@3.0.5
+
+      - name: Pack the macro compendium
+        working-directory: gold-manager
+        run: |
+          rm -rf packs/gold-manager-macros
+          fvtt package pack gold-manager-macros \
+            --inputDirectory packs/_source/gold-manager-macros \
+            --outputDirectory packs
+          rm -f packs/gold-manager-macros/LOCK
+
+      - name: Build module.zip
+        working-directory: gold-manager
+        run: |
+          # Same layout as the 1.0.7 asset: module files at the archive root, not wrapped in a folder.
+          zip -r "$GITHUB_WORKSPACE/module.zip" \
+            module.json \
+            README.md \
+            scripts \
+            packs/gold-manager-macros \
+            -x '*/LOCK'
+
+      - name: Attach module.json and module.zip
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload "${{ github.event.release.tag_name }}" \
+            "$GITHUB_WORKSPACE/module.zip" \
+            "$GITHUB_WORKSPACE/gold-manager/module.json" \
+            --clobber
